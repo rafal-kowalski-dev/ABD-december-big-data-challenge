@@ -1,3 +1,5 @@
+<img src="task_01.png" alt="task image">
+
 # Podstawowe polecenie: 
 Napisz aplikację, która pobiera dane z API pogodowego i zapisuje na dysk. Aplikacja powinna być parametryzowana, aby można było łatwo uruchomić, pobierając z różnych miast czy dat. W podstawie można zrobić pobieranie z określonych miast, z aktualnego momentu. Docelowo warto dodać też historię.
 
