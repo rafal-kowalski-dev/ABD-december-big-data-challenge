@@ -18,7 +18,7 @@ Link do proponowanego API pogodowego (można wybrać swoje), do tego dwa konkret
 ## Uzasadnienie (co ćwiczymy i dlaczego):
 
 1. Zapoznawanie się z API: Big Data to nie tylko logiczne transformacje. To także konieczność pracy z zewnętrznymi źródłami. Pierwszym etapem jest umiejętność wczytania się w to jak ktoś inny przygotował to co mamy pobrać.
-2. Pobieranie z API: jak wyżej:-). Tyle, że tu już budujemy warsztat techniczny do pobierania danych.
+2. Pobieranie z API: jak wyżej :-). Tyle, że tu już budujemy warsztat techniczny do pobierania danych.
 3. Umiejętność budowania ETL (pierwszy etap – Extract).
 4. Praca z surowymi danymi
 5. Tworzenie kodu, który nie jest jednorazowym ćwiczeniem. Poprzez parametryzację chcemy dać możliwość wielokrotnego, a nawet częstego wykorzystania
