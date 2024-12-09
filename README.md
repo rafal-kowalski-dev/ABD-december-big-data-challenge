@@ -9,3 +9,7 @@ Task's solutions of December challenge from Akademia Big Data
 ## Instalation
 
 to be written...
+
+## Used APIs
+- [OpenWeatherMap API](https://openweathermap.org/api) - for getting weather data
+- [Nominatim API](https://nominatim.org/release-docs/latest/api/Overview/) - for geocoding locations
