@@ -7,6 +7,7 @@ import requests
 
 from utils import logger
 
+
 def get_coordinates(
     city: str = None, country: str = None, postal_code: str = None
 ) -> Tuple[float, float] | None:
@@ -22,7 +23,7 @@ def get_coordinates(
     """
     name = "utils.get_coordinates"
 
-    url = f"https://nominatim.openstreetmap.org/search?addressdetails=1&format=json"
+    url = "https://nominatim.openstreetmap.org/search?addressdetails=1&format=json"
 
     if city:
         url += f"&city={city}"
@@ -33,7 +34,7 @@ def get_coordinates(
 
     url += "&limit=1"
 
-    response = requests.get(url, headers={"User-Agent": "Other"})
+    response = requests.get(url, headers={"User-Agent": "Other"}, timeout=5)
 
     if response.status_code == 200:
         try:
