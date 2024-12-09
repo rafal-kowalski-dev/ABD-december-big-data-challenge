@@ -9,14 +9,14 @@ from pydantic import BaseModel
 from utils.logger import logger
 
 
-class WeatherConfig(BaseModel):
+class WeatherAppConfig(BaseModel):
     forecast: int = 1
     cities: List[str] = []
 
     def _update(self, conf: dict):
         self.forecast = conf["forecast"]
         self.cities = conf["cities"]
-
+        
     def import_settings_from_json(self, path: Path | str, encoding="utf8"):
         try:
             with open(path, encoding=encoding) as f:
@@ -28,5 +28,5 @@ class WeatherConfig(BaseModel):
             logger.error(f"{self.__class__.__name__} -> {e}")
 
 
-weather_app_config = WeatherConfig()
+weather_app_config = WeatherAppConfig()
 weather_app_config.import_settings_from_json("config.json")
