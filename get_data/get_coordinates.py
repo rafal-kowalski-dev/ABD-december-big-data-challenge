@@ -21,7 +21,7 @@ def get_coordinates(
     Returns:
         Tuple of (latitude, longitude) or None if location not found
     """
-    name = "utils.get_coordinates"
+    name = "get_coordinates"
 
     url = "https://nominatim.openstreetmap.org/search?addressdetails=1&format=json"
 
