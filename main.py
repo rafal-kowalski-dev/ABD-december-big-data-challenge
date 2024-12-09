@@ -9,6 +9,7 @@ from utils.logger import logger
 
 if __name__ == "__main__":
     results = []
+
     for city in weather_app_config.cities:
         coords = get_coordinates(city)
         res = get_weather_data(coordinates=coords, forecast=weather_app_config.forecast)
