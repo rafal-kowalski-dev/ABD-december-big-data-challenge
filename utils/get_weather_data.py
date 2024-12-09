@@ -1,32 +1,30 @@
+"""Module for fetching weather data from Open-Meteo API."""
+
 import json
-import logging
 from datetime import date, timedelta
 
 import requests
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    filename="log.txt",
-    filemode="a",
-)
-
+from utils import logger
 
 # Wroclaw
 # coordinates = (51.10536196888788, 17.01631922567193)
 
 # Szczerbice
 coordinates = (50.092402238216856, 18.459952564477)
-latitude = coordinates[0]
-longitude = coordinates[0]
+lat = coordinates[0]
+lon = coordinates[0]
 
 
 past_days = None
 forecast = 1
 
-url = f"https://archive-api.open-meteo.com/v1/era5" if past_days else f'https://api.open-meteo.com/v1/forecast'
-url += f'?latitude={latitude}&longitude={longitude}'
+url = (
+    f"https://archive-api.open-meteo.com/v1/era5"
+    if past_days
+    else f"https://api.open-meteo.com/v1/forecast"
+)
+url += f"?latitude={lat}&longitude={lon}"
 
 cols = [
     "temperature_2m",
@@ -79,7 +77,7 @@ if past_days:
     url += f"&start_date={today - timedelta(days=past_days)}&end_date={today}"
 
 if forecast:
-    url += f'&forecast_days={forecast}'
+    url += f"&forecast_days={forecast}"
 
 if len(cols):
     url += f"&hourly={','.join(cols)}"
@@ -91,4 +89,4 @@ if response.status_code == 200:
     with open("weather.json", mode="w", encoding="utf8") as out_file:
         out_file.write(response.text)
 else:
-    logging.error(f"{response.status_code} -> {json.loads(response.text)['reason']}")
+    logger.error(f"{response.status_code} -> {json.loads(response.text)['reason']}")
