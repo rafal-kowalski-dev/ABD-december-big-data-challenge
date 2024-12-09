@@ -14,7 +14,7 @@ def get_weather_data(
     past_days: int = None,
     forecast: int = None,
     cols: List[str] = None,
-):
+) -> dict | None:
     """Fetch weather data from Open-Meteo API and save it to a JSON file.
 
     Args:
@@ -45,7 +45,7 @@ def get_weather_data(
     """
     lat, lon = coordinates
 
-    name = "utils.get_weather_data"
+    name = "get_weather_data"
 
     url = (
         "https://archive-api.open-meteo.com/v1/era5"
@@ -112,10 +112,9 @@ def get_weather_data(
     response = requests.get(url, timeout=5)
 
     if response.status_code == 200:
-        with open("weather.json", mode="w", encoding="utf8") as out_file:
-            out_file.write(response.text)
-        logger.info()
+        logger.info(f"{name} -> Fetch weather data (coordinates={coordinates})")
+        return json.loads(response.text)
     else:
         logger.error(
-            f"{name} -> {json.loads(response.text)['reason']} (status_code={response.status_code})"
+            f"{name} -> {json.load(response.text)['reason']} (status_code={response.status_code})"
         )
