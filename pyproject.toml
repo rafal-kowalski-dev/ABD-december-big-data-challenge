@@ -23,4 +23,5 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.pylint.MASTER]
-ignore-paths = '^.venv'
+ignore-paths = ["^.venv","^.*/__init__.py"]
+disable = ["logging-fstring-interpolation",]
