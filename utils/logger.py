@@ -9,6 +9,7 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
     filename="log.txt",
     filemode="a",
+    encoding="utf8",
 )
 
 logger: Logger = logging.getLogger(__name__)
