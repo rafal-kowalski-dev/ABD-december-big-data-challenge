@@ -5,7 +5,7 @@ from typing import Tuple
 
 import requests
 
-from utils import logger
+from utils.logger import logger
 
 
 def get_coordinates(
@@ -39,7 +39,7 @@ def get_coordinates(
     if response.status_code == 200:
         try:
             city_data = json.loads(response.text)[0]
-            logger.info(
+            logger.debug(
                 f"{name} -> fetch data (city={city}, country={country}, postal_code={postal_code})"
             )
         except IndexError:
