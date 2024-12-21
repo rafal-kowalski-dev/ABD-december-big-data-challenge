@@ -29,7 +29,7 @@ def get_weather_data(
             See https://open-meteo.com/en/docs for available parameters.
 
     Returns:
-        None: The function saves the weather data to 'weather.json' and logs the result.
+        None: The function saves the weather data to JSON file and logs the result.
 
     Raises:
         Logs an error if the API request fails, including the status code and error reason.
@@ -109,12 +109,12 @@ def get_weather_data(
     if forecast:
         url += f"&forecast_days={forecast}"
 
-    response = requests.get(url, timeout=5)
+    response = requests.get(url, timeout=300)
 
     if response.status_code == 200:
         logger.info(f"{name} -> Fetch weather data (coordinates={coordinates})")
         return json.loads(response.text)
-    else:
-        logger.error(
-            f"{name} -> {json.load(response.text)['reason']} (status_code={response.status_code})"
-        )
+
+    logger.error(
+        f"{name} -> {json.load(response.text)['reason']} (status_code={response.status_code})"
+    )
