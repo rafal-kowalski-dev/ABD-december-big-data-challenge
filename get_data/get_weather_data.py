@@ -109,7 +109,7 @@ def get_weather_data(
     if forecast:
         url += f"&forecast_days={forecast}"
 
-    response = requests.get(url, timeout=5)
+    response = requests.get(url, timeout=300)
 
     if response.status_code == 200:
         logger.info(f"{name} -> Fetch weather data (coordinates={coordinates})")
