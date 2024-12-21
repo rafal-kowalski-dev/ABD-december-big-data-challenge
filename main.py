@@ -6,8 +6,10 @@ from datetime import date
 from config import weather_app_config
 from get_data import get_coordinates, get_weather_data
 from utils.logger import logger
+from transform_data import convert_json_to_parquet
 
 if __name__ == "__main__":
+    path = f"results/{date.today()}.json"
     results = []
 
     for city in weather_app_config.cities:
@@ -16,6 +18,8 @@ if __name__ == "__main__":
         res.update({"city": city})
         results.append(res)
 
-    with open(f"results/{date.today()}.json", mode="w", encoding="utf8") as f:
+    with open(path, mode="w", encoding="utf8") as f:
         json.dump(results, f)
         logger.info("main -> write data to file")
+
+    convert_json_to_parquet(path)
