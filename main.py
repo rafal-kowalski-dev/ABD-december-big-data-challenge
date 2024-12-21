@@ -5,8 +5,8 @@ from datetime import date
 
 from config import weather_app_config
 from get_data import get_coordinates, get_weather_data
-from utils.logger import logger
 from transform_data import convert_json_to_parquet
+from utils.logger import logger
 
 if __name__ == "__main__":
     path = f"results/{date.today()}.json"
