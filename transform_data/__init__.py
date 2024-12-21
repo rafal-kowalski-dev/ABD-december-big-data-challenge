@@ -1,1 +1,1 @@
-from transform_data.convert_json_to_parquet import convert_json_to_parquet
+from convert_json_to_parquet import convert_json_to_parquet
