@@ -1,3 +1,5 @@
+<img src="logo.png" alt="main logo">
+
 # ABD-december-big-data-challenge
 Task's solutions of December challenge from Akademia Big Data
 
