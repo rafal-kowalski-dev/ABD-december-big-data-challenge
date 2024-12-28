@@ -2,6 +2,7 @@
 
 import json
 from datetime import date
+from click import command, option
 
 from config import weather_app_config
 from get_data import get_coordinates, get_weather_data
@@ -23,3 +24,6 @@ if __name__ == "__main__":
         logger.info("main -> write data to file")
 
     convert_json_to_parquet(path)
+    logger.info("main -> convert json to parquet")
+
+    
