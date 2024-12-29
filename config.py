@@ -5,10 +5,13 @@ import os
 from pathlib import Path
 from typing import List
 
+from dotenv import load_dotenv
+
 from pydantic import BaseModel
 
 from utils.logger import logger
 
+load_dotenv()
 
 class WeatherAppConfig(BaseModel):
     """Configuration model for the weather data application.
@@ -29,6 +32,11 @@ class WeatherAppConfig(BaseModel):
         """
         self.forecast = conf["forecast"]
         self.cities = conf["cities"]
+        self.db_host = os.environ.get("POSTGRES_HOST")
+        self.db_user = os.environ.get("POSTGRES_USER")
+        self.db_password = os.environ.get("POSTGRES_PASSWORD")
+        self.db_database = os.environ.get("POSTGRES_DB")
+    
 
     def import_settings_from_json(self, path: Path | str, encoding="utf8"):
         """Import configuration settings from a JSON file.

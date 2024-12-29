@@ -167,3 +167,4 @@ cython_debug/
 
 results/
 notes.ipynb
+database/data/
