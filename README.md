@@ -1,3 +1,5 @@
+<img src="logo.png" alt="main logo">
+
 # ABD-december-big-data-challenge
 Task's solutions of December challenge from Akademia Big Data
 
@@ -5,8 +7,10 @@ Task's solutions of December challenge from Akademia Big Data
 *all descriptions are in Polish because Akademia Big Data is a Polish platform for data engineers and enthusiasts of big data created by Marek Czuma*
 
 - [Task 01 - Extract data](tasks/task_01.md)
+- [Task 02 - Load data](tasks/task_02.md) 
+- [Task 03 - Transform data](tasks/task_03.md)
 
-## Instalation
+## Installation
 
 to be written...
 
