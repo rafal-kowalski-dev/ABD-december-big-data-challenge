@@ -1,12 +1,11 @@
-from pyspark.sql.types import (
-    ArrayType,
-    BinaryType,
-    DoubleType,
-    LongType,
-    StringType,
-    StructField,
-    StructType,
-)
+"""Schema definitions for weather data processing in PySpark.
+
+Defines structured schemas for hourly weather measurements, measurement units,
+and the main data structure containing both measurements and metadata.
+"""
+
+from pyspark.sql.types import (ArrayType, BinaryType, DoubleType, LongType,
+                               StringType, StructField, StructType)
 
 hourly_schema = StructType(
     [

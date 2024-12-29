@@ -1,14 +1,13 @@
 """Module for converting JSON files to Parquet format.
 
-This module provides functionality to read a JSON file, add a measure date column based on the filename,
+This module provides functionality to read a JSON file,
+add a measure date column based on the filename,
 and write the data to a Parquet file using Apache Spark.
 """
 
-from datetime import date
 from pathlib import Path
 
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import lit
 
 
 def convert_json_to_parquet(path: Path | str, spark_session: SparkSession = None):

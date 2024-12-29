@@ -2,13 +2,12 @@
 
 import json
 from datetime import date
-from os import listdir
 
 import click
 
 from config import weather_app_config
 from get_data import get_coordinates, get_weather_data
-from transform_data import Measurement, MesurementType, convert_json_to_parquet
+from transform_data import Measurement, convert_json_to_parquet
 from utils.logger import logger
 
 
@@ -53,7 +52,18 @@ def main(**kwargs):
         transform_data_command(kwargs["output_path"], kwargs["input_path"])
 
 
+# TODO: refactor - add input_path and output_path
 def get_weather_data_command():
+    """Fetch and save weather data for configured cities.
+
+    Uses weather_app_config to get list of cities and forecast settings.
+    For each city:
+    1. Gets coordinates using get_coordinates()
+    2. Fetches weather data using get_weather_data()
+    3. Adds city name to the response
+
+    Saves combined results as JSON in results/YYYY-MM-DD.json
+    """
     path = f"results/{date.today()}.json"
     results = []
 
@@ -68,20 +78,38 @@ def get_weather_data_command():
         logger.info("main -> write data to file")
 
 
+# TODO: refactor - add input_path and output_path
 def convert_json_to_parquet_command():
+    """Convert daily JSON weather data to Parquet format.
+
+    Takes JSON file from results/YYYY-MM-DD.json and converts it to
+    Parquet format using convert_json_to_parquet() function.
+    Parquet files are saved in results/parquets/ directory.
+    """
     path = f"results/{date.today()}.json"
     convert_json_to_parquet(path)
     logger.info("main -> convert json to parquet")
 
 
 def transform_data_command(output_path: str = None, input_path: str = None):
+    """Transform Parquet weather data into clean format.
+
+    Uses Measurement class to read and transform Parquet files.
+    Transformed data is saved according to MeasurementType enum values.
+
+    Args:
+        output_path: Directory for saving transformed data.
+                    Defaults to 'results/clean_parquets/'.
+        input_path: Directory containing Parquet files to transform.
+                   Defaults to 'results/parquets/'.
+    """
     if not output_path:
         output_path = f"results/clean_parquets/"
     if not input_path:
         input_path = f"results/parquets/"
     meas = Measurement(input_path)
-    meas.save(f"{output_path}/{t.value}")
-    logger.info(f"main -> transform data -> {t.value}")
+    meas.save(f"{output_path}")
+    logger.info(f"main -> transform data")
 
 
 if __name__ == "__main__":
