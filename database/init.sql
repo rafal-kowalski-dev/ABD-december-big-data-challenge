@@ -15,8 +15,6 @@ CREATE TABLE IF NOT EXISTS weather.measurements (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create indexes for better query performance
-CREATE INDEX IF NOT EXISTS idx_current_weather_city_id ON weather.current_weather(city_id);
 
 -- Create table for cities
 CREATE TABLE IF NOT EXISTS weather.cities (
@@ -26,3 +24,6 @@ CREATE TABLE IF NOT EXISTS weather.cities (
     longitude DECIMAL(10,6),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Create indexes for better query performance
+CREATE INDEX IF NOT EXISTS idx_measurements_city_id ON weather.measurements(city_id);
